@@ -103,7 +103,7 @@ router.patch('/users/me', checkAuthorization,  async (req, res) => {
 router.delete('/users/me', checkAuthorization, async (req, res) => {
     _log.info(' SUCCESSFUL API DELETE CALL TO /users ', '');
     try {
-        req.user.remove()
+        await req.user.remove()
         dispatchEmail.sendGoodbyEmail(req.user.email, req.user.name)
         res.send(req.user)
     } catch (error) {
